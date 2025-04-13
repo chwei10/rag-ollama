@@ -2,11 +2,16 @@
 Multimodal RAG application for restaurant queries with image support
 """
 
+import os
+import json
+import sys
+
+# Add parent directory to path for direct script execution
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage, AIMessage
-import os
-import json
 
 from src.config import MODEL_NAME, ASSETS_DIR, DATA_DIR
 from src.multimodal_embeddings import retriever, add_image_document, add_text_document

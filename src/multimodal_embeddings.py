@@ -7,11 +7,15 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 import os
+import sys
 import pandas as pd
 from PIL import Image
 import base64
 import io
 import numpy as np
+
+# Add parent directory to path for direct script execution
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.config import (
     MODEL_NAME,

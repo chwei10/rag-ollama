@@ -4,10 +4,14 @@ Document importer module for importing various file types into the RAG system
 
 import os
 import json
+import sys
 import pandas as pd
 import csv
 from langchain_core.documents import Document
 from typing import List, Dict, Any, Optional, Tuple, Union
+
+# Add parent directory to path for direct script execution
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.config import DATA_DIR
 from src.multimodal_embeddings import add_text_document, add_image_document
