@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-core
+langchain-chroma
+langchain-ollama
+ollama
+pandas
+pillow
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.0
+transformers
