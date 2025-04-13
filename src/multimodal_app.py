@@ -8,8 +8,9 @@ from langchain_core.messages import HumanMessage, AIMessage
 import os
 import json
 
-from src.config import MODEL_NAME, ASSETS_DIR
+from src.config import MODEL_NAME, ASSETS_DIR, DATA_DIR
 from src.multimodal_embeddings import retriever, add_image_document, add_text_document
+from src.document_importer import process_import_command
 
 def format_document(doc):
     """Format a document for display in the prompt"""
@@ -100,6 +101,9 @@ def run_multimodal_app():
     print("\nSpecial commands:")
     print("  !add_image:path/to/image.jpg|caption|optional metadata")
     print("  !add_text:content|optional metadata")
+    print("  !import_csv:path/to/file.csv")
+    print("  !import_txt:path/to/file.txt")
+    print("  !import_restaurant:path/to/restaurant_review.txt")
     print("  q - Quit the application\n")
 
     while True:
@@ -136,6 +140,12 @@ def run_multimodal_app():
             metadata = parts[1].strip() if len(parts) > 1 else None
             
             result = add_new_text(content, metadata)
+            print(result)
+            continue
+            
+        elif user_input.startswith("!import_csv:") or user_input.startswith("!import_txt:") or user_input.startswith("!import_restaurant:"):
+            # Handle all import commands
+            result = process_import_command(user_input)
             print(result)
             continue
         
